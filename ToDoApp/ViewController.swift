@@ -56,19 +56,21 @@ class ViewController: UIViewController {
         var isOriginalState = true
         
         let action = UIAction(title: "") { _ in
-            if isOriginalState == true {
-                isOriginalState = false
-                label.text = "Primeiro Button"
-                label.textColor = UIColor.white
-                labelContainer.backgroundColor = UIColor.systemPink
-                self.view.backgroundColor = UIColor.black
-            } else {
-                isOriginalState = true
-                label.text = originalText
-                label.textColor = originalTextColor
-                labelContainer.backgroundColor = originalContainerColor
-                self.view.backgroundColor = originalViewColor
-            }
+            UIView.animate(withDuration: 2, animations: {
+                if isOriginalState == true {
+                    isOriginalState = false
+                    label.text = "Primeiro Button"
+                    label.textColor = UIColor.white
+                    labelContainer.backgroundColor = UIColor.systemPink
+                    self.view.backgroundColor = UIColor.black
+                } else {
+                    isOriginalState = true
+                    label.text = originalText
+                    label.textColor = originalTextColor
+                    labelContainer.backgroundColor = originalContainerColor
+                    self.view.backgroundColor = originalViewColor
+                }
+            })
         }
         let button = UIButton(type: .system, primaryAction: action)
         button.setTitle("Button", for: .normal)
