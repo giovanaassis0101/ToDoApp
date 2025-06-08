@@ -14,14 +14,22 @@ class ViewController: UIViewController {
         //está chamando a função que já existe
         super.viewDidLoad()
         
+        let originalTextColor =  UIColor.black
+        let originalContainerColor = UIColor.systemPink
+        let originalViewColor = UIColor.white
+        let originalText = "Hello World!"
+        
         let labelContainer = UIView()
-        labelContainer.backgroundColor = UIColor.systemPink
+        labelContainer.backgroundColor = originalContainerColor
         
         
         //criação e configuração da label
         let label = UILabel()
-        label.text = "Hello, World!"
-        label.textColor = UIColor.black
+        label.text = originalText
+        label.textColor = originalTextColor
+        
+        //configuração da view
+        view.backgroundColor = originalViewColor
         
         //a view já existe no UiViewController, então ela sempre vai estar aqui se for uma UIViewController.
         //adicionando a label na hierarquia da view. (label é filha da view e a view é pai da label).
@@ -45,7 +53,24 @@ class ViewController: UIViewController {
         labelContainer.layer.cornerRadius = 20
         labelContainer.layer.shadowOpacity = 5
         
-        let button = UIButton(type: .system)
+        var isOriginalState = true
+        
+        let action = UIAction(title: "") { _ in
+            if isOriginalState == true {
+                isOriginalState = false
+                label.text = "Primeiro Button"
+                label.textColor = UIColor.white
+                labelContainer.backgroundColor = UIColor.systemPink
+                self.view.backgroundColor = UIColor.black
+            } else {
+                isOriginalState = true
+                label.text = originalText
+                label.textColor = originalTextColor
+                labelContainer.backgroundColor = originalContainerColor
+                self.view.backgroundColor = originalViewColor
+            }
+        }
+        let button = UIButton(type: .system, primaryAction: action)
         button.setTitle("Button", for: .normal)
         
         view.addSubview(button)
@@ -54,8 +79,7 @@ class ViewController: UIViewController {
         
         button.topAnchor.constraint(equalTo: labelContainer.bottomAnchor, constant: 30).isActive = true
         
-        //configuração da view
-        view.backgroundColor = UIColor.white
+        
         
     }
 
