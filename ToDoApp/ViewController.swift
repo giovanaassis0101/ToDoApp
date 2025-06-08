@@ -44,7 +44,16 @@ class ViewController: UIViewController {
         
         labelContainer.layer.cornerRadius = 20
         labelContainer.layer.shadowOpacity = 5
-    
+        
+        let button = UIButton(type: .system)
+        button.setTitle("Button", for: .normal)
+        
+        view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints =  false
+        button.centerXAnchor.constraint(equalTo: labelContainer.centerXAnchor).isActive = true
+        
+        button.topAnchor.constraint(equalTo: labelContainer.bottomAnchor, constant: 30).isActive = true
+        
         //configuração da view
         view.backgroundColor = UIColor.white
         
